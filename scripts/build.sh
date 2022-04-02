@@ -10,9 +10,9 @@
 rm -rf electron/binaries
 mkdir electron/binaries
 # copy any dna files into the electron/binaries folder for distribution
-cp happ/workdir/*.dna electron/binaries
+cp REA/*.dna electron/binaries
 # copy a primary happ file into the electron/binaries folder for distribution
-cp happ/workdir/application.happ electron/binaries
+cp REA/application.happ electron/binaries
 bash scripts/copy-binaries.sh
 
 # ui
