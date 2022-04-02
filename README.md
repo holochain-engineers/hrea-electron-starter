@@ -1,4 +1,4 @@
-# Electron-hREA-Starter
+# hREA-Electron-Starter
 
 https://hackmd.io/qYVX0jKWSYe8-FBuiIqnqA?view
 
