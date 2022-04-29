@@ -10,10 +10,10 @@ module.exports = {
     },
     {
       name: 'electron-holochain',
-      script: './electron/node_modules/.bin/electron electron',
+      script: './electron/node_modules/.bin/electron electron withUI',
       watch: ['electron/dist'],
       env: {
-        NODE_ENV: 'development',
+        NODE_ENV: 'development'
       },
     },
     // {
@@ -26,3 +26,4 @@ module.exports = {
     // },
   ],
 }
+//./node_modules/wait-on/bin/wait-on tcp:4200 &&

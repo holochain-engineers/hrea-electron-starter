@@ -1,7 +1,7 @@
 {
-  "name": "electron-application-name",
+  "name": "hrea-electron-starter",
   "version": "0.0.1",
-  "description": "Electron application description goes here",
+  "description": "Holochain REA testing",
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc && electron .",
@@ -16,7 +16,7 @@
   },
   "license": "CAL-1.0",
   "build": {
-    "productName": "REAElectronStarter",
+    "productName": "hrea",
     "afterSign": "./afterSignHook.js",
     "appId": "com.some-domain-name.app-name",
     "copyright": "© 2022 So And So Ltd. ",
@@ -39,18 +39,19 @@
   },
   "devDependencies": {
     "@types/split": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "electron": "^16.0.7",
     "electron-builder": "22.11.7",
-    "eslint": "^7.25.0",
-    "eslint-plugin-import": "^2.22.1",
-    "typescript": "^4.2.4",
-    "electron": "^16.0.7"
+    "eslint": "^8.14.0",
+    "eslint-plugin-import": "^2.26.0",
+    "typescript": "^4.2.4"
   },
   "dependencies": {
     "electron-holochain": "0.0.32",
     "electron-log": "^4.3.5",
     "electron-notarize": "^1.0.0",
-    "split": "^1.0.1"
+    "split": "^1.0.1",
+    "wait-on": "^6.0.1"
   }
 }

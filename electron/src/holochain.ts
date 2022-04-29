@@ -2,7 +2,7 @@ import * as path from 'path'
 import { app } from 'electron'
 import { HolochainRunnerOptions, StateSignal, PathOptions } from 'electron-holochain'
 
-const MAIN_APP_ID = 'main-app'
+const MAIN_APP_ID = 'hrea_suite'
 const COMMUNITY_PROXY_URL =
   'kitsune-proxy://SYVd4CF3BdJ4DS7KwLLgeU3_DbHoZ34Y-qroZ79DOs8/kitsune-quic/h/165.22.32.11/p/5779/--'
 // increment this version when an update to the application
@@ -43,8 +43,8 @@ export function stateSignalToText(state: StateSignal): StateSignalText {
 }
 
 const happPath = app.isPackaged
-  ? path.join(app.getAppPath(), '../app.asar.unpacked/binaries/application.happ')
-  : path.join(app.getAppPath(), '../happ/workdir/application.happ')
+  ? path.join(app.getAppPath(), '../app.asar.unpacked/binaries/hrea_suite.happ')
+  : path.join(app.getAppPath(), '../REA/hrea_suite.happ')
 
 // in production
 // must point to unpacked versions, not in an asar archive
@@ -84,7 +84,7 @@ const prodOptions: HolochainRunnerOptions = {
   happPath: happPath, // preload
   datastorePath: path.join(app.getPath('userData'), `databases-${DATABASES_VERSION_ID}`),
   appId: MAIN_APP_ID,
-  appWsPort: 8889,
+  appWsPort: 8888,
   adminWsPort: 1235,
   keystorePath: path.join(app.getPath('userData'), `keystore-${KEYSTORE_VERSION_ID}`),
   proxyUrl: COMMUNITY_PROXY_URL,

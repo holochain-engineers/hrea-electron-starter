@@ -1,7 +1,9 @@
-import { app, BrowserWindow, shell } from 'electron'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import * as path from 'path'
+import * as waitOn from 'wait-on'
 // import log from 'electron-log'
 import initAgent, { StateSignal, STATUS_EVENT } from 'electron-holochain'
+import { environment } from './environments/environment' 
 
 import {
   devOptions,
@@ -23,15 +25,21 @@ process.on('uncaughtException', (e) => {
 const BACKGROUND_COLOR = '#fbf9f7'
 
 const MAIN_FILE = path.join(__dirname, '../web/index.html')
-const SPLASH_FILE = path.join(__dirname, '../web/splashscreen.html')
+const SPLASH_FILE = path.join(__dirname, '../splash/splashscreen.html')
+
 // const LINUX_ICON_FILE = path.join(
 //   __dirname,
 //   '../web/logo/acorn-logo-desktop-512px.png'
 // )
 
-const DEVELOPMENT_UI_URL = process.env.EH_TEST_USER_2
-  ? 'http://localhost:8081'
-  : 'http://localhost:8080'
+let WITH_UI = false
+if(process.env.args && process.env.args.includes("withUI",2))
+WITH_UI = true
+
+const DEVELOPMENT_UI_URL = environment.DEV_URL
+// process.env.EH_TEST_USER_2
+ // ? 'http://localhost:8081'
+ // : 'http://localhost:8080'
 
 const createMainWindow = (): BrowserWindow => {
   // Create the browser window.
@@ -52,13 +60,15 @@ const createMainWindow = (): BrowserWindow => {
   // }
   const mainWindow = new BrowserWindow(options)
   // and load the index.html of the app.
+
   if (app.isPackaged) {
     mainWindow.loadFile(MAIN_FILE)
   } else {
     // development
-    mainWindow.loadURL(DEVELOPMENT_UI_URL)
+      mainWindow.loadURL(DEVELOPMENT_UI_URL)
   }
   // Open <a href='' target='_blank'> with default system browser
+
   mainWindow.webContents.on('new-window', function (event, url) {
     event.preventDefault()
     shell.openExternal(url)
@@ -67,6 +77,8 @@ const createMainWindow = (): BrowserWindow => {
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })
+//})
+
   return mainWindow
 }
 
@@ -89,12 +101,12 @@ const createSplashWindow = (): BrowserWindow => {
   })
 
   // and load the splashscreen.html of the app.
-  if (app.isPackaged) {
+  //if (app.isPackaged) {
     splashWindow.loadFile(SPLASH_FILE)
-  } else {
+  //} else {
     // development
-    splashWindow.loadURL(`${DEVELOPMENT_UI_URL}/splashscreen.html`)
-  }
+   // splashWindow.loadURL(`${DEVELOPMENT_UI_URL}/splashscreen.html`)
+ // }
   // once its ready to show, show
   splashWindow.once('ready-to-show', () => {
     splashWindow.show()
@@ -102,6 +114,7 @@ const createSplashWindow = (): BrowserWindow => {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
+
   return splashWindow
 }
 
@@ -120,8 +133,26 @@ app.on('ready', async () => {
         // important that this line comes before the next one
         // otherwise this triggers the 'all-windows-closed'
         // event
-        createMainWindow()
-        splashWindow.close()
+        if (app.isPackaged){
+          createMainWindow()
+          splashWindow.close()
+        }
+        else {
+          if (WITH_UI) {
+            splashWindow.webContents.send('status', 'Waiting for UI to Load')
+            waitOn({resources:[DEVELOPMENT_UI_URL]})
+            .then(function () {
+              createMainWindow()
+              splashWindow.close()
+              // once here, all resources are available
+            })
+            .catch(function (err) {
+              console.error(err);
+            });
+          } else{
+            splashWindow.close()
+          }
+        }
         break
       default:
         splashWindow.webContents.send('status', stateSignalToText(state))

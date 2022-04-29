@@ -1,28 +1,22 @@
 {
-  "name": "electron-holochain-template",
+  "name": "hrea-electron-starter",
   "version": "0.0.1",
-  "description": "This repository helps get started with electron and holochain",
+  "description": "This repository helps get started with REA, electron and holochain",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sprillow/electron-holochain-template.git"
+    "url": "git+https://github.com/holochain-engineers/REA-Electron-starter.git"
   },
   "scripts": {
-    "install-deps": "npm install && npm run electron-install && npm run electron-tsc",
+    "install-deps": "npm i && cd electron && npm i && cd ../web && npm i && cd .. && npm run electron-tsc",
     "dev": "pm2-dev pm2.config.js",
-    "dev-explore": "pm2-dev pm2.explore-config.js",
     "user-data-reset": "rm -rf user-data && rm -rf user2-data && mkdir user-data user2-data",
-    "web-install": "cd web && npm install",
-    "web-explore": "cd holorea-graphql-explorer && ADMIN_WS_PORT=1234 APP_WS_PORT=8887 npx webpack-dev-server --config webpack.dev.js",
-    "web": "cd web && ADMIN_WS_PORT=1235 APP_WS_PORT=8888 npx webpack-dev-server --config webpack.dev.js",
-    "web2": "cd web && ADMIN_WS_PORT=1236 APP_WS_PORT=8899 npx webpack-dev-server --config webpack.dev.js",
-    "web-build": "cd web && npx webpack --config webpack.prod.js",
-    "electron-install": "cd electron && npm install",
+    "web": "cd web && npm run start",
+    "web-build": "cd web && npm run build",
     "electron": "cd electron && npm run start",
-    "electron2": "cd electron && EH_TEST_USER_2=1 npm run start",
     "electron-tsc": "cd electron && npm run tsc",
-    "build": "bash scripts/build.sh"
+    "build": "bash scripts/build.sh web/dist/ng-hrea-client"
   },
-  "author": "Connor Turland <connor@sprillow.com>",
+  "author": "Thomas Cal<nphias@gmail.com>, Connor Turland <connor@sprillow.com>",
   "license": "CAL-1.0",
   "dependencies": {
     "pm2": "^5.1.1"

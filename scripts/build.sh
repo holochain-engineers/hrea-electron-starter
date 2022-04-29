@@ -12,13 +12,13 @@ mkdir electron/binaries
 # copy any dna files into the electron/binaries folder for distribution
 cp REA/*.dna electron/binaries
 # copy a primary happ file into the electron/binaries folder for distribution
-cp REA/application.happ electron/binaries
+cp REA/hrea_suite.happ electron/binaries
 bash scripts/copy-binaries.sh
 
 # ui
 rm -rf electron/web
 npm run web-build
-cp -r web/dist electron/web
+cp -r $1 electron/web
 
 # build the electron application
 cd electron

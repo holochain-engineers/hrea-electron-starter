@@ -4,7 +4,6 @@ out/
 user2-data
 user-data
 electron/web
-
 dna/workdir/*.dna
 
 web/dist/*.js

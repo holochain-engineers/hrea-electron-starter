@@ -1,10 +1,6 @@
 # hREA-Electron-Starter
 
-https://hackmd.io/qYVX0jKWSYe8-FBuiIqnqA?view
-
-This template gives you only what you need to get up and running with a new project that uses electron and holochain!
-
-Check out the video walkthrough, just note that some minor details may have changed since then, but it will still be super useful to understand how to utilize this template: https://www.youtube.com/watch?v=jFraPKl2rPk.
+This template gives you what you need to get up and running with a new project that uses electron and holochain and REA!
 
 [IMPORTANT! Check Dependency Versions Information (Holochain etc)](#dependency-versions-information)
 
@@ -21,7 +17,7 @@ __Table of Contents__
 
 Global find and replace:
 
-`REAElectronStarter`: replace with the actual name you wish to see appear in users desktop launcher icons: e.g. "Acorn"
+`REAElectronStarter`: replace with the actual name you wish to see appear in users desktop launcher icons
 
 `com.some-domain-name.app-name`: replace with an Apple ["bundle Id"](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids) that is registered on your Apple Developer account
 
@@ -37,8 +33,7 @@ TODO: linux
 
 _Prerequisites_
 
-- Have rust language (stable) installed on your system
-- Have nodejs version 14 installed on your system
+- Have nodejs version 14 or greater installed on your system
 
 Then run
 
@@ -53,40 +48,33 @@ You can run `npm run user-data-reset` if you have user data in development, but 
 
 > NOTE: if you see a blank screen once electron launches the app, refresh the page (using View -> Reload or Cmd/Ctrl-R) to see app contents.
 
-### Commands that are more specific to your use case:
+> NOTE: occasionally shutdown will not be clean (Ctrl-C) and you will have to kill zombies like (holochain-runner and lair-keystore)
 
-**dna**
 
-- Have rust language (stable) installed on your system, then...
-- `npm run happ-install`: installs wasm32 compilation target for rust as well as the Holochain CLI
-- `npm run happ-pack`: compiles zomes into wasm and packages each one into a dna using Holochain CLI 
-- `npm run happ-reset`: runs `happ-pack` and clears user data (Run this anytime you change the code in `happ` folder during development)
-
-To test backend:
-
-- `npm run happ-test`: runs unit tests
+### specific to your use case:
 
 **web** (user interface)
 
-- Use nodejs version 14
-- `npm run web-install`
+- the default web client is ng-rea-client.. you can run it independently and swap it out with another framework/design  
 - `npm run web`
 
 **electron**
 
-- `npm run electron-install`
 - `npm run electron-tsc` (**needs to be re-run whenever electron folder source code changes**)
-- `npm run electron`
+- `npm run electron` (you can run electron which bundles the HREA binaries indepently of the front end )
+
+**ENVIRONMENTS**
+
+- be sure to configure your prefered environment settings prior to running the happ currently located at electron/src/enviroments (this will change soon) 
+
+**REA suite**
+
+- The REA wasm files are installed under the REA directory and copied to the electron backend.. The REA suite is compatible with the specific holochain version 
+
 
 ## Multi-User Development Testing
-Some features to develop and test require running two instances of the app simultaneously. The project is set up with that in mind.
+TODO
 
-run the following commands in separate terminal instances (must have a running instance of acorn for the first user, either by running `npm run dev` or the below commands without the `2`):
-
-- `npm run web2`
-- `npm run electron2`
-
-After running these commands, a `user2-data/` directory is created with user data. It too can be cleared by running `npm run user-data-reset`.
 
 ## Building / Packaging
 
@@ -140,6 +128,9 @@ https://github.com/Sprillow/holochain-runner/releases/tag/v0.0.35
 Lair Keystore Revision [v0.0.9 Nov 4, 2021](https://github.com/holochain/lair/releases/tag/v0.0.9)
 
 https://docs.rs/hdk/0.0.122/hdk/index.html
+
+hREA wasm suite version 0.0.1-alpha.4
+https://github.com/h-REA/hREA/releases/tag/0.0.1-alpha.4  
 
 and electron 16
 
