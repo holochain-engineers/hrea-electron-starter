@@ -1,6 +1,15 @@
 # hREA-Electron-Starter
 
-This template gives you what you need to get up and running with a new project that uses electron and holochain and REA!
+This starter kit allows you to build your own REA holochain application without having to install, build or compile holochain code..
+It runs out of the box with a sample web client. Understanding of the REA ontology is covered in other projects including a Launcher app (REA explorer)
+Later additions of this porject might include the REA-graphiql-explorer.
+
+Deployment diagram:
+
+<p align="center">
+    <img src="hrea-stack.png" width="750">
+</p>
+
 
 [IMPORTANT! Check Dependency Versions Information (Holochain etc)](#dependency-versions-information)
 
