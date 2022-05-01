@@ -1,13 +1,13 @@
 # hREA-Electron-Starter
 
 This starter kit allows you to build your own REA holochain application without having to install, build or compile holochain code..
-It runs out of the box with a sample web client. Understanding of the REA ontology is covered in other projects including a Launcher app (REA explorer)
-Later additions of this porject might include the REA-graphiql-explorer.
+It runs out of the box with a sample web client. Understanding of the REA ontology is covered in other projects including a visual Launcher app (REA explorer)
+["REA Guide"](https://hackmd.io/@connoropolous/B1B5qAIpK)
 
-Deployment diagram:
+Later additions of this project should include a new version of the REA-graphiql-explorer.
 
 <p align="center">
-    <img src="hrea-stack.png" width="750">
+    <img src="hrea-stack.png" width="500">
 </p>
 
 

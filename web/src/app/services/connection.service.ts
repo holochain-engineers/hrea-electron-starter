@@ -15,21 +15,27 @@ export class ConnectionService {
 
 
   async init(){
-    const conn = await autoConnect(environment.APP_CONDUCTOR_URI, environment.APP_ID)
-    this.dnaConfig = conn.dnaConfig
-    this.conductorUri = conn.conductorUri
-    //console.log("here",this.dnaConfig,this.conductorUri)
-    const options:APIOptions = { dnaConfig: conn.dnaConfig, conductorUri: conn.conductorUri } 
-    const schema = await bindSchema(options)
+    const conn = await autoConnect(environment.APP_CONDUCTOR_URI, environment.APP_ID).catch(this.onSocketFail)
+    if (conn){
+      this.dnaConfig = conn.dnaConfig
+      this.conductorUri = conn.conductorUri
+      //console.log("here",this.dnaConfig,this.conductorUri)
+      const options:APIOptions = { dnaConfig: conn.dnaConfig, conductorUri: conn.conductorUri } 
+      const schema = await bindSchema(options)
 
-    this.apolloOptions =  {
-      cache: new InMemoryCache(),
-      link: new SchemaLink({schema}),
-      defaultOptions: {
-        watchQuery: {
-         errorPolicy: 'all'
+      this.apolloOptions =  {
+        cache: new InMemoryCache(),
+        link: new SchemaLink({schema}),
+        defaultOptions: {
+          watchQuery: {
+          errorPolicy: 'all'
+          }
         }
-      }
-    };
+      };
+    }
+  }
+
+  onSocketFail(reason:any){
+    console.error("holochain websocket connection failed... ",reason)
   }
 }
