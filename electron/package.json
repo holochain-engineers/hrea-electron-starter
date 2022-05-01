@@ -2,7 +2,7 @@
   "name": "hrea-electron-starter",
   "version": "0.0.1",
   "description": "Holochain REA testing",
-  "main": "dist/index.js",
+  "main": "dist/electron/src/index.js",
   "scripts": {
     "start": "tsc && electron .",
     "build": "tsc && electron-builder build",
@@ -24,6 +24,7 @@
     "files": [
       "dist/**/*",
       "web/**/*",
+      "splash/**/*",
       "binaries/**/*",
       "node_modules/**/*",
       "package.json"

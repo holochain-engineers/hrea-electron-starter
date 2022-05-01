@@ -24,7 +24,7 @@
       "dom"
     ],
     "paths": {
-      "@environment": ["../electron/src/environments/environment.ts"]
+      "@environment": ["../environments/environment.ts"]
     },
   },
   "angularCompilerOptions": {

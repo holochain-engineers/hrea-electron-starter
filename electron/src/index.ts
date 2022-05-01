@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as waitOn from 'wait-on'
 // import log from 'electron-log'
 import initAgent, { StateSignal, STATUS_EVENT } from 'electron-holochain'
-import { environment } from './environments/environment' 
+import { environment } from '../../environments/environment' 
 
 import {
   devOptions,
@@ -24,8 +24,9 @@ process.on('uncaughtException', (e) => {
 
 const BACKGROUND_COLOR = '#fbf9f7'
 
-const MAIN_FILE = path.join(__dirname, '../web/index.html')
-const SPLASH_FILE = path.join(__dirname, '../splash/splashscreen.html')
+const MAIN_FILE = path.join(__dirname, '../../../web/index.html')
+const SPLASH_FILE = path.join(__dirname, '../../../splash/splashscreen.html')
+
 
 // const LINUX_ICON_FILE = path.join(
 //   __dirname,

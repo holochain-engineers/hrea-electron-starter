@@ -51,8 +51,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "../electron/src/environments/environment.ts",
-                  "with": "../electron/src/environments/environment.prod.ts"
+                  "replace": "../environments/environment.ts",
+                  "with": "../environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"

@@ -4,7 +4,7 @@
   "description": "This repository helps get started with REA, electron and holochain",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/holochain-engineers/REA-Electron-starter.git"
+    "url": "git+https://github.com/holochain-engineers/hrea-electron-starter.git"
   },
   "scripts": {
     "install-deps": "npm i && cd electron && npm i && cd ../web && npm i && cd .. && npm run electron-tsc",

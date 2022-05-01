@@ -15,7 +15,7 @@ export class ConnectionService {
 
 
   async init(){
-    const conn = await autoConnect(environment.APP_CONDUCTOR_URI, environment.APP_ID).catch(this.onSocketFail)
+    const conn = await autoConnect("ws://localhost:"+environment.APP_CONDUCTOR_PORT, "hrea_suite").catch(this.onSocketFail)
     if (conn){
       this.dnaConfig = conn.dnaConfig
       this.conductorUri = conn.conductorUri
